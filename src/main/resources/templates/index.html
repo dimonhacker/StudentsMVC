@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Students MVC Project</title>
+</head>
+<body>
+<h3>Students</h3>
+<a href="/create">Create Student</a>
+<table width="50%">
+    <tr>
+        <th width="5%"><b>Фамилия</b></th>
+        <td width="20%"><b>Имя</b></td>
+        <td width="5%"><b>Отчетсво</b></td>
+        <td width="10%"><b>Дата рождения</b></td>
+        <td width="5%"><b>Группа</b></td>
+        <td width="5%"><b></b></td>
+    </tr>
+    <tr th:each="student: ${students}">
+        <td th:text="${student.name}"></td>
+        <td th:text="${student.surname}"></td>
+        <td th:text="${student.patronymic}"></td>
+        <td th:text="${#dates.format(student.birthday, 'dd-MM-yyyy HH:mm')}"></td>
+        <td th:text="${student.studentGroup.groupName}"></td>
+        <td><a th:href="'/delete/'+${student.id}"><span>Delete</span></a></td>
+    </tr>
+</table>
+</body>
+</html>

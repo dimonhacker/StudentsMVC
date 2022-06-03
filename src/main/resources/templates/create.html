@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Students MVC Project</title>
+</head>
+<body>
+<form th:method="POST" th:action="@{/create}" th:object="${student}">
+    <div>
+        <label for="name">Name</label><br>
+        <input type="text" th:field="*{name}" id="name"/><br>
+        <label for="surname">Surname</label><br>
+        <input type="text" th:field="*{surname}" id="surname"/><br>
+        <label for="patronymic">Patronymic</label><br>
+        <input type="text" th:field="*{patronymic}" id="patronymic"/><br>
+        <label for="birthday">Birthday</label><br>
+        <input type="date" th:field="*{birthday}" id="birthday"/><br>
+        <label for="studentGroup">Choose group</label><br>
+        <select id="studentGroup"  th:field="*{studentGroup.id}" >
+            <option th:each="gr: ${groups}" th:value="${gr.id}" th:text="${gr.groupName}" th:selected="${student.studentGroup.id == gr.id}" ></option>
+        </select>
+        <br><br>
+
+        <input type="submit" value="Create" class="buttons"  id="Create">
+    </div>
+    <br><br>
+
+</form>
+</body>
+</html>
